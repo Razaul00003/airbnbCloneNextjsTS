@@ -18,7 +18,6 @@ const UserMenu = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={toggleOpen}
           className="
             hidden
             md:block
@@ -35,7 +34,7 @@ const UserMenu = () => {
           Airbnb your home
         </div>
         <div
-          onClick={() => {}}
+          onClick={toggleOpen}
           className="
           p-4
           md:py-1

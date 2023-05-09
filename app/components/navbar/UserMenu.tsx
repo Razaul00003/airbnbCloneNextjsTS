@@ -7,8 +7,10 @@ import { useRouter } from "next/navigation";
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 import useRegisterModal from "@/app/hooks/userRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const UserMenu = () => {
+  const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +100,7 @@ const UserMenu = () => {
             </>
 
             <>
-              <MenuItem onClick={() => {}} label="Login" />
+              <MenuItem onClick={loginModal.onOpen} label="Login" />
               <MenuItem onClick={registerModal.onOpen} label="Sign up" />
             </>
           </div>

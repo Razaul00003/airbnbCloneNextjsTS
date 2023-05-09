@@ -6,8 +6,10 @@ import { useRouter } from "next/navigation";
 
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
+import useRegisterModal from "@/app/hooks/userRegisterModal";
 
 const UserMenu = () => {
+  const registerModal = useRegisterModal();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = useCallback(() => {
@@ -97,7 +99,7 @@ const UserMenu = () => {
 
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sign up" />
+              <MenuItem onClick={registerModal.onOpen} label="Sign up" />
             </>
           </div>
         </div>

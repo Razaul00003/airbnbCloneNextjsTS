@@ -8,8 +8,13 @@ import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
 import useRegisterModal from "@/app/hooks/userRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { User } from "@prisma/client";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: User | null;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const router = useRouter();
@@ -22,6 +27,7 @@ const UserMenu = () => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
+          onClick={() => {}}
           className="
             hidden
             md:block
@@ -57,7 +63,7 @@ const UserMenu = () => {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar src="" />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -77,32 +83,34 @@ const UserMenu = () => {
           "
         >
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem
-                label="My trips"
-                onClick={() => router.push("/trips")}
-              />
-              <MenuItem
-                label="My favorites"
-                onClick={() => router.push("/favorites")}
-              />
-              <MenuItem
-                label="My reservations"
-                onClick={() => router.push("/reservations")}
-              />
-              <MenuItem
-                label="My properties"
-                onClick={() => router.push("/properties")}
-              />
-              <MenuItem onClick={() => {}} label="Airbnb your home" />
-              <hr />
-              <MenuItem onClick={() => {}} label="Logout" />
-            </>
-
-            <>
-              <MenuItem onClick={loginModal.onOpen} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Sign up" />
-            </>
+            {currentUser ? (
+              <>
+                <MenuItem
+                  label="My trips"
+                  onClick={() => router.push("/trips")}
+                />
+                <MenuItem
+                  label="My favorites"
+                  onClick={() => router.push("/favorites")}
+                />
+                <MenuItem
+                  label="My reservations"
+                  onClick={() => router.push("/reservations")}
+                />
+                <MenuItem
+                  label="My properties"
+                  onClick={() => router.push("/properties")}
+                />
+                <MenuItem label="Airbnb your home" onClick={() => {}} />
+                <hr />
+                <MenuItem label="Logout" onClick={() => {}} />
+              </>
+            ) : (
+              <>
+                <MenuItem label="Login" onClick={loginModal.onOpen} />
+                <MenuItem label="Sign up" onClick={registerModal.onOpen} />
+              </>
+            )}
           </div>
         </div>
       )}

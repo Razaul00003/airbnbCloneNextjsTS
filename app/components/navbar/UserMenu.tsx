@@ -9,6 +9,7 @@ import Avatar from "../Avatar";
 import useRegisterModal from "@/app/hooks/userRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 
 interface UserMenuProps {
   currentUser?: User | null;
@@ -103,7 +104,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 />
                 <MenuItem label="Airbnb your home" onClick={() => {}} />
                 <hr />
-                <MenuItem label="Logout" onClick={() => {}} />
+                <MenuItem label="Logout" onClick={signOut} />
               </>
             ) : (
               <>

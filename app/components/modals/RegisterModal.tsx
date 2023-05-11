@@ -1,24 +1,24 @@
 "use client";
-import React from "react";
+
 import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
+import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import useRegisterModal from "@/app/hooks/userRegisterModal";
+
+import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
+import Heading from "../Heading";
 import Button from "../Button";
 import Input from "@/app/inputs/Input";
-import Heading from "../Heading";
-import { signIn } from "next-auth/react";
+import useRegisterModal from "@/app/hooks/userRegisterModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
-  const onToggle = useCallback(() => {
-    registerModal.onClose();
-  }, [registerModal]);
 
   const {
     register,
@@ -38,16 +38,22 @@ const RegisterModal = () => {
     axios
       .post("/api/register", data)
       .then(() => {
+        toast.success("Registered!");
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
-        toast.error("Some thing went wrong");
-        console.log(error);
+        toast.error(error);
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
+
+  const onToggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -127,10 +133,10 @@ const RegisterModal = () => {
       isOpen={registerModal.isOpen}
       title="Register"
       actionLabel="Continue"
-      body={bodyContent}
-      footer={footerContent}
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
+      body={bodyContent}
+      footer={footerContent}
     />
   );
 };

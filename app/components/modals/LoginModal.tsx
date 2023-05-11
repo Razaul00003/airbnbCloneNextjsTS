@@ -9,11 +9,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 
 import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/userRegisterModal";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Button from "../Button";
-import useRegisterModal from "@/app/hooks/userRegisterModal";
 import Input from "@/app/inputs/Input";
 
 const LoginModal = () => {

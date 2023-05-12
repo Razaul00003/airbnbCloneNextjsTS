@@ -14,7 +14,7 @@ import ClientOnly from "../ClientOnly";
 import HeartButton from "../HeartButton";
 
 interface ListingCardProps {
-  data: Listing;
+  data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;

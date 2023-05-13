@@ -1,4 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Live Website 
+[https://airbnbnextts.vercel.app/](https://airbnbnextts.vercel.app/) <br/>
+![AIRBNBNEXTTS](https://github.com/Razaul00003/airbnbCloneNextjsTS/assets/62474138/bc758fa4-f738-40a1-bb06-6dad55ec31c8)
+
 
 ## Getting Started
 

@@ -3,10 +3,13 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
+import useSearchModal from "@/app/hooks/useSearchModal";
 
 const Search = () => {
+  const searchModal = useSearchModal();
   return (
     <div
+      onClick={searchModal.onOpen}
       className="
         border-[1px] 
         w-full 
